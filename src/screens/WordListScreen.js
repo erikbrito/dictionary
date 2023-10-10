@@ -67,12 +67,7 @@ const WordListScreen = React.memo(() => {
       // redireciona para tela com o significado da palavra
       navigation.navigate('MeaningScreen', { response: response.data });
     } catch (error) {
-      Alert.alert('Erro', 'Erro ao buscar definição da palavra', [
-        {
-          text: 'OK',
-          onPress: () => console.log('OK Pressed'),
-        },
-      ]);
+      Alert.alert('Erro', 'Erro ao buscar definição da palavra', [{ text: 'OK'}]);
     }
   };
 

@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native'
+import axios from 'axios';
 
 import { useWordContext } from '../context/WordContext';
 
@@ -10,6 +12,8 @@ const HistoryScreen = () => {
   const [isFavorited, setIsFavorited] = useState(false);
 
   const { visitedWords } = useWordContext();
+
+  const navigation = useNavigation();
 
   // Função para verificar se uma palavra está favoritada
   const isWordFavorited = (word) => {
@@ -36,6 +40,17 @@ const HistoryScreen = () => {
       console.error('Erro ao favoritar palavra:', error);
     }
   };
+  
+  // Função para acessar a tela com o significado da palavra selecionada
+  const handleMeaning = async (word) => {
+    try {
+      const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+  
+      navigation.navigate('MeaningScreen', { response: response.data });
+    } catch (error) {
+      Alert.alert('Erro', 'Erro ao buscar definição da palavra', [{ text: 'OK'}]);
+    }
+  };
 
   useFocusEffect(
     useCallback(() => {
@@ -58,13 +73,15 @@ const HistoryScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Histórico de Palavras Salvas</Text>
+      <Text style={styles.title}>Histórico de Palavras Visitadas</Text>
       <FlatList
         data={visitedWords}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
-          <View style={styles.wordItem}>
-            <Text style={styles.text}>{item}</Text>
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.wordItem} onPress={() => handleMeaning(item)}>
+              <Text style={styles.text}>{item}</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity onPress={() => handleFavorite(item)}>
               <Text style={styles.favoriteButtonText}>
@@ -88,12 +105,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  wordItem: {
+  row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+  },
+  wordItem: {
+    width: 300,
   },
   text: {
     fontSize: 18,

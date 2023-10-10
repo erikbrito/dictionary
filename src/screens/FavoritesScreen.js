@@ -2,9 +2,24 @@ import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native'
+import axios from 'axios';
 
 const FavoritesScreen = () => {
   const [favoriteWords, setFavoriteWords] = useState([]);
+
+  const navigation = useNavigation();
+
+  // Função para acessar a tela com o significado da palavra selecionada
+  const handleMeaning = async (word) => {
+    try {
+      const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+  
+      navigation.navigate('MeaningScreen', { response: response.data });
+    } catch (error) {
+      Alert.alert('Erro', 'Erro ao buscar definição da palavra', [{ text: 'OK'}]);
+    }
+  };
 
   // Função para remover uma palavra da lista dos favoritos
   const removeFavoriteWord = async (wordToRemove) => {
@@ -53,8 +68,10 @@ const FavoritesScreen = () => {
         data={favoriteWords}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
-          <View style={styles.wordItem}>
-            <Text style={styles.text}>{item}</Text>
+          <View style={styles.row}>
+            <TouchableOpacity style={styles.wordItem} onPress={() => handleMeaning(item)}>
+              <Text style={styles.text}>{item}</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity onPress={() => removeFavoriteWord(item)}>
               <Text style={styles.removeButton}>Remover</Text>
@@ -84,12 +101,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  wordItem: {
+  row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 8,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+  },
+  wordItem: {
+    width: 300,
   },
   text: {
     fontSize: 18,
