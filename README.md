@@ -1,101 +1,177 @@
-# Mobile Challenge 🏅 2023 - Dictionary
+# Dictionary App
 
-## Introdução
+O projeto é uma aplicação React Native que permite aos usuários pesquisar definições de palavras e salvar suas palavras favoritas em uma lista. Ele também fornece funcionalidades para reproduzir a pronúncia de palavras, manter um histórico de palavras pesquisadas e gerenciar uma lista de palavras favoritas.
 
-Este é um desafio para que possamos ver as suas habilidades como Mobile Developer.
+### Tabela de Conteúdo
 
-Nesse desafio você deverá desenvolver um aplicativo para listar palavras em inglês, utilizando como base a API [Free Dictionary API](https://dictionaryapi.dev/). O projeto a ser desenvolvido por você tem como objetivo exibir termos em inglês e gerenciar as palavras visualizadas, conforme indicado nos casos de uso que estão logo abaixo.
+- [Recursos](#recursos)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Pré Requitos](#pré-requisitos)
+  - [Configuração do Projeto](#configuração-do-projeto)
+  - [Executando o Aplicativo](#executando-o-aplicativo)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Gerenciamento de Dados](#gerenciamento-de-dados)
+- [Uso](#uso)
 
-[SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
+## Recursos
 
-### Antes de começar
- 
-- Prepare o projeto para ser disponibilizado no Github, copiando o conteúdo deste repositório para o seu (ou utilize o fork do projeto e aponte para o Github). Confirme que a visibilidade do projeto é pública (não esqueça de colocar no readme a referência a este challenge);
-- O projeto deve utilizar a Linguagem específica na sua Vaga (caso esteja se candidatando). Por exempo: Python, R, Scala e entre outras;
-- Considere como deadline 5 dias a partir do início do desafio. Caso tenha sido convidado a realizar o teste e não seja possível concluir dentro deste período, avise a pessoa que o convidou para receber instruções sobre o que fazer.
-- Documentar todo o processo de investigação para o desenvolvimento da atividade (README.md no seu repositório); os resultados destas tarefas são tão importantes do que o seu processo de pensamento e decisões à medida que as completa, por isso tente documentar e apresentar os seus hipóteses e decisões na medida do possível.
+- Pesquisar definições de palavras.
+- Reproduzir a pronúncia de palavras (se disponível).
+- Salvar palavras em uma lista de histórico.
+- Gerenciar uma lista de palavras favoritas.
+- Limpar histórico de pesquisa.
+- Limpar lista de palavras favoritas.
 
-### Instruções iniciais obrigatórias
+## Tecnologias Utilizadas
 
-- Utilize as seguintes tecnologias:
+- React Native
+- Metro bundler (v0.76.8)
+- React Navigation
+- Axios
+- AsyncStorage
+- Context Api
+- React Native Vector Icons
+- React Native Sound Player
+  
+## Pré-requisitos
 
-#### Tecnologias (Mobile):
-- Nativo ou Hibrido (Flutter, Ionic, React Native, etc)
-- Estilização (Material, Semantic, etc). Ou escrever o seu próprio sob medida 👌
-- Gestão de dados (Redux, Context API, IndexedDB, SQLite, etc)
+Antes de começar, certifique-se de ter as seguintes ferramentas instaladas:
 
-Atente-se, ao desenvolver a aplicação mobile, para conceitos de usabilidade e adeque a interface com elementos visuais para os usuários do seu sistema.
+- Node.js: [Download Node.js](https://nodejs.org/)
+- npm (gerenciador de pacotes Node.js): Normalmente, já é instalado junto com o Node.js.
+- React Native CLI: Execute o seguinte comando para instalar globalmente o React Native CLI:
 
-#### Tecnologias (Back-End):
-- Firebase, Supabase, etc
+  ```shell
+  npm install -g react-native-cli
+  ```
 
-#### Organização:
-- Aplicação de padrões Clean Code
-- Validação de chamadas assíncronas para evitar travamentos
+- Xcode (apenas para desenvolvimento iOS): [Download Xcode](https://developer.apple.com/xcode/)
+- Android Studio (apenas para desenvolvimento Android): [Download Android Studio](https://developer.android.com/studio)
 
-### Modelo de Dados:
+## Configuração do Projeto
 
-Conforme indicado na documentação da API, a API retorna as informações de uma palavra, tais como etimologia, sinônimos, exemplos de uso, etc. Utilize os campos indicados na documentação dos endpoints para obter os dados necessários.
- 
-### Front-End:
+1. Clone este repositório em sua máquina local:
 
-Nessa etapa você deverá desenvolver uma aplicação móvel nativa ou hibrida para consumir a API do desafio.
+   ```shell
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   ```
 
-**Obrigatório 1** - Você deverá atender aos seguintes casos de uso:
+2. Navegue até o diretório do projeto:
 
-- Como usuário, devo ser capaz de visualizar uma lista de palavras com rolagem infinita
-- Como usuário, devo ser capaz de visualizar uma palavra, significados e a fonética
-- Como usuário, devo ser capaz de salvar a palavra como favorito
-- Como usuário, devo ser capaz de remover a palavra como favorito
-- Como usuário, devo ser capaz de visitar uma lista com as palavras que já vi anteriormente
+   ```shell
+   cd nome-do-repositorio
+   ```
 
-A API não possui endpoint com a lista de palavras. Essa lista pode ser carregada em memória ou ser salva em banco de dados local ou remoto (por exemplo, com Firebase). Será necessário usar o [arquivo existente dentro do projeto no Github](https://github.com/dwyl/english-words/blob/master/words_dictionary.json).
+3. Instale as dependências do projeto:
 
-**Obrigatório 2** - Salvar em cache o resultado das requisições, para agilizar a resposta em caso de buscas com parâmetros repetidos.
+   ```shell
+   npm install ou yarn install
+   ```
 
-**Obrigatório 3** - Seguir o wireframe para a página de listagem dos dados. Pode-se alterar a posição dos itens, mantendo as funcionalidades solicitadas.
+## Executando o Aplicativo
 
-<img src="./img/wireframe.png" width="100%" />
+Siga as instruções apropriadas para executar o aplicativo em um dispositivo Android ou iOS.
 
-**Diferencial 1** - Implementar um tocador de audio utilizando, por exemplo, https://responsivevoice.org/api ou recursos nativos;
+### Para Android:
 
-**Diferencial 2** - Utilizar alguma ferramenta de Injeção de Dependência;
+1. Certifique-se de ter um emulador Android configurado ou um dispositivo Android conectado via USB.
+2. Execute o aplicativo com o comando:
 
-**Diferencial 3** - Escrever Unit Tests ou E2E Test. Escolher a melhor abordagem e biblioteca;
+   ```shell
+   npx react-native run-android
+   ```
 
-**Diferencial 4** - Implementar login com usuário e senha e associar os favoritos e histórico ao ID do usuário, salvando essa informação em banco de dados local ou remoto
+### Para iOS:
 
-## Readme do Repositório
+1. Certifique-se de ter o Xcode instalado.
+2. Execute o aplicativo com o comando:
 
-- Deve conter o título do projeto
-- Uma descrição sobre o projeto em frase
-- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
-- Como instalar e usar o projeto (instruções)
-- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
-- Se está usando github pessoal, referencie que é um challenge by coodesh:  
+   ```shell
+   npx react-native run-ios
+   ```
+
+Abra o aplicativo em um emulador ou dispositivo físico.
+
+## Observações
+
+É importante observar que o bundler javascript Metro para o React Native está na versão v0.76.8 e talvez ao executar esse projeto ele carregue o aplicativo de forma extremamente lenta podendo demorar mais de 1 min para abrir o aplicativo.
+
+## Estrutura do Projeto
+
+A estrutura de diretórios do projeto é a seguinte:
+
+- `src`: Contém os componentes e telas do aplicativo.
+  - `api`: Arquivos JSON contendo palavras para exibição.
+  - `context`: Contextos para gerenciamento de estados globais.
+  - `screens`: Telas do aplicativo.
+- `routes`: Rotas de navegação entre as telas do aplicativo.
+
+```
+projeto/
+  ├── src/
+  │   ├── api/
+  │   │   ├── WordsData1.json
+  │   │   ├── WordsData2.json
+  │   │   ├── WordsData3.json
+  │   │   └── WordsData4.json
+  │   ├── context/
+  │   │   └── WordContext.js
+  │   ├── screens/
+  │   │   ├── FavoritesScreen.js
+  │   │   ├── HistoryScreen.js
+  │   │   ├── HomeScreen.js
+  │   │   ├── InfoScreen.js
+  │   │   └── WordListScreen.js
+  ├── Routes.js
+  ├── App.js
+  ├── README.md
+  ├── package.json
+  └── ...
+```
+
+Claro, aqui está uma versão aprimorada da seção "Gerenciamento de Dados" no seu README:
+
+## Gerenciamento de Dados
+
+O aplicativo utiliza duas abordagens para o gerenciamento de dados:
+
+### 1. AsyncStorage
+
+O AsyncStorage é utilizado para armazenar informações, como as palavras favoritas do usuário. Essa escolha de armazenamento persistente permite aos usuários acessarem seu histórico de palavras favoritas, mesmo após fecharem o aplicativo ou desligarem o dispositivo. Isso proporciona uma experiência contínua e personalizada, permitindo que os usuários mantenham um registro das palavras que consideram importantes.
+
+### 2. Context API
+
+O aplicativo também faz uso da Context API para o armazenamento temporário das palavras pesquisadas. Isso permite aos usuários acessar seu histórico de palavras pesquisadas apenas enquanto o aplicativo estiver em execução. Quando o aplicativo é fechado, o histórico de pesquisa é mantido apenas durante a sessão atual. Essa abordagem é ideal para oferecer aos usuários uma visão rápida de suas pesquisas recentes enquanto eles exploram e interagem com o aplicativo.
+
+Juntas, essas duas estratégias de gerenciamento de dados proporcionam uma experiência de usuário completa, com a capacidade de manter um histórico de palavras pesquisadas e favoritas, ao mesmo tempo em que oferecem um desempenho eficiente no armazenamento de informações temporárias e permanentes.
+
+## Uso
+
+### Tela Inicial
+
+- Na tela inicial, você verá três abas: "Word List", "History" e "Favorites".
+- Clique em "Word List" para ver uma lista de palavras.
+- Clique em uma palavra para ver a definição e a pronúncia (se disponível).
+- Você pode favoritar uma palavra na tela de definição.
+- Na aba "History", você pode ver seu histórico de palavras pesquisadas.
+- Na aba "Favorites", você pode gerenciar sua lista de palavras favoritas.
+
+### Tela de Definição (Info)
+
+- Na tela de definição, você verá a palavra, a pronúncia e a definição (se disponível).
+- Você pode reproduzir a pronúncia da palavra clicando no ícone "play" (se disponível).
+- Você pode navegar entre diferentes palavras usando os botões "Voltar" e "Avançar".
+- Você pode voltar para a tela inicial clicando no ícone "X".
+
+### Tela de Histórico (History)
+
+- Na tela de histórico, você verá uma lista das palavras pesquisadas.
+- Você pode favoritar ou desfavoritar palavras nesta tela.
+
+### Tela de Favoritos (Favorites)
+
+- Na tela de favoritos, você verá uma lista das palavras favoritas.
+- Você pode remover palavras da lista de favoritos ou limpar toda a lista.
+
 
 >  This is a challenge by [Coodesh](https://coodesh.com/)
-
-
-## Finalização e Instruções para a Apresentação
-
-Avisar sobre a finalização e enviar para correção.
-
-1. Confira se você respondeu o Scorecard anexado na Vaga que se candidatou;
-2. Confira se você respondeu o Mapeamento anexado na Vaga que se candidatou;
-3. Acesse [https://coodesh.com/challenges/review](https://coodesh.com/challenges/review);
-4. Adicione o repositório com a sua solução;
-5. Grave um vídeo, utilizando o botão na tela de solicitar revisão da Coodesh, com no máximo 5 minutos, com a apresentação do seu projeto. Utilize o tempo para:
-- Explicar o objetivo do desafio
-- Quais tecnologias foram utilizadas
-- Mostrar a aplicação em funcionamento
-- Foque em pontos obrigatórios e diferenciais quando for apresentar.
-6. Adicione o link da apresentação do seu projeto no README.md.
-7. Verifique se o Readme está bom e faça o commit final em seu repositório;
-8. Confira a vaga desejada;
-9. Envie e aguarde as instruções para seguir no processo. Sucesso e boa sorte. =)
-
-## Suporte
-
-Use a [nossa comunidade](https://discord.gg/rdXbEvjsWu) para tirar dúvidas sobre o processo ou envie uma mensagem diretamente a um especialista no chat da plataforma. 
-
