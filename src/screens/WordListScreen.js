@@ -24,12 +24,12 @@ const WordListScreen = React.memo(() => {
   // Carrega as primeiras palavras da lista de dados
   useEffect(() => {
     const initialData = Object.keys(currentWordsData)
-      .slice(0, 12)
+      .slice(0, 24)
       .map((key) => ({ id: key, word: key }));
     setData(initialData);
   }, []);
 
-  // Navegação para a próxima página de palavras
+  // carregamento de mais palavras
   const loadMoreData = () => {
     const startIndex = data.length;
     const endIndex = startIndex + 9;

@@ -85,7 +85,6 @@ const MeaningScreen = ({ route }) => {
         .catch(error => console.error(error));
 
         if (audioPosition === audioDuration) {
-          console.log('here')
           setIsPlaying(false)
         }
     } else {

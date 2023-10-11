@@ -24,11 +24,14 @@ const HistoryScreen = () => {
   const handleFavorite = async (word) => {
     try {
       if (isWordFavorited(word)) {
+        console.log('1')
+        console.log(favorites)
         // Remova a palavra da lista de favoritos
         const updatedFavorites = favorites.filter((favWord) => favWord !== word);
         await AsyncStorage.setItem('favoriteWords', JSON.stringify(updatedFavorites));
         setFavorites(updatedFavorites);
       } else {
+        console.log('2')
         // Adicione a palavra à lista de favoritos
         const updatedFavorites = [...favorites, word];
         await AsyncStorage.setItem('favoriteWords', JSON.stringify(updatedFavorites));
@@ -52,15 +55,20 @@ const HistoryScreen = () => {
     }
   };
 
+  console.log(favorites)
+
   useFocusEffect(
     useCallback(() => {
       // Carregua a lista de palavras favoritadas do AsyncStorage quando o componente for montado
       const loadFavoriteWords = async () => {
         try {
+          console.log('3')
           const favoriteWordsJSON = await AsyncStorage.getItem('favoriteWords');
+          setFavorites([])
           if (favoriteWordsJSON) {
             const parsedFavoriteWords = JSON.parse(favoriteWordsJSON);
             setFavorites(parsedFavoriteWords);
+            console.log('4')
           }
         } catch (error) {
           console.error('Erro ao carregar palavras favoritadas:', error);
